@@ -32,7 +32,7 @@ def cnn_classifier_page():
         return predicted_class
 
     # Single Image Upload
-    st.write("### Upload a Single Image to Classify")
+    st.write("#### Upload a Single Image")
     uploaded_image = st.file_uploader("Upload an image...", type=["jpg", "jpeg", "png"])
 
     if uploaded_image:
@@ -44,7 +44,7 @@ def cnn_classifier_page():
             st.success(f"Prediction: **{prediction}**")
 
     # Multiple Image Upload
-    st.write("### Upload Multiple Images for Prediction")
+    st.write("#### Upload Multiple Images")
     multiple_images = st.file_uploader("Upload multiple images...", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
     def predict_multiple_images(images):
@@ -65,7 +65,7 @@ def cnn_classifier_page():
             st.write("---")
 
     # Batch Image Upload (Zip File)
-    st.write("### Upload a Zip File for Batch Prediction")
+    st.write("#### Upload a Zip File of Images")
     uploaded_zip = st.file_uploader("Upload a zip file containing images...", type="zip")
 
     def predict_zip_images(zip_file):

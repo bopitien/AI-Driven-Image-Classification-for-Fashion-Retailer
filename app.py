@@ -1,8 +1,8 @@
-import streamlit as st
+import streamlit as st 
 from cnn_page import cnn_classifier_page
 from mobilenetv2_page import mobilenetv2_classifier_page
 
-# Set page configuration with new theme and layout
+# Set page configuration
 st.set_page_config(
     page_title="Fashion Trend Classifier",
     page_icon="👗",
@@ -10,35 +10,77 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for style improvements
+# Custom CSS for vibrant design
 st.markdown("""
     <style>
+        /* App background and font style */
         .stApp {
-            background-color: #f9f9f9;
+            background: linear-gradient(to bottom, #fff5f5, #ffe6e6);
             color: #333333;
+            font-family: 'Helvetica Neue', sans-serif;
         }
+
+        /* Header customization */
         header, footer {visibility: hidden;}
-        .css-1avcm0n, .css-1ekf893 {color: #ff7f50; font-weight: bold;}
-        .css-1kyxreq {background: #fffcf7; border: 1px solid #ff7f50; padding: 1.5rem;}
-        .stSelectbox, .stFileUploader, .stButton > button {
-            border-radius: 0.5rem;
-            background: #fffcf7;
+        .main-header {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff6f61;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 2px #ffcccc;
+        }
+
+        /* Sidebar styling */
+        .css-1lcbmhc {
+            background: linear-gradient(to bottom, #ffebeb, #ffe6e6);
+            color: #333333;
+            font-weight: bold;
+        }
+
+        /* Customizing the radio button */
+        .stRadio > label {
+            font-size: 1.1rem;
+            color: #ff6f61;
+        }
+        .stRadio div {
+            gap: 10px;
+        }
+
+        /* Styling buttons */
+        .stButton > button {
+            background: linear-gradient(to right, #ff6f61, #ff847c);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 1rem;
+            box-shadow: 2px 2px 5px #ff9999;
+        }
+        .stButton > button:hover {
+            background: linear-gradient(to right, #ff847c, #ff6f61);
+        }
+
+        /* Styling the title */
+        .css-10trblm {
+            color: #ff6f61 !important;
         }
     </style>
 """, unsafe_allow_html=True)
 
 # App header
-st.title("🛍️ Fashion Trend Image Classifier")
+st.markdown("<div class='main-header'>🛍️ Fashion Trend Image Classifier</div>", unsafe_allow_html=True)
 
-# Sidebar model selection
-st.sidebar.title("Select Model Version")
+# Sidebar for model selection
+st.sidebar.title("Model Selection")
+st.sidebar.markdown("Choose a model to classify your fashion images:")
 page = st.sidebar.radio(
-    "Choose a model",
+    "Model Versions",
     ["CNN Classifier", "MobileNetV2 Classifier"],
     index=0
 )
 
-# Conditional model page loading
+# Load the selected model page
 if page == "CNN Classifier":
     cnn_classifier_page()  # CNN version function
 else:
